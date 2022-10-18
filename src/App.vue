@@ -1,8 +1,9 @@
 <template>
   <div class="container">
+    <CreateTask :numberoftasks="tasks.length" @add-task='addTask'/>
     <HeaderComponent/>
 <TasksComponent @complete-task="completeTask" @delete-task="deleteTask" :tasks=tasks />
-<CreateTask/>
+
   </div>
 </template>
 
@@ -29,6 +30,9 @@ methods:{
   },
   completeTask(id){
     this.tasks=this.tasks.map((task)=>task.id==id?{...task,completed:!task.completed}:task)
+  },
+  addTask(task){
+    this.tasks=[...this.tasks,task]
   }
  
 },
